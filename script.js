@@ -1,7 +1,7 @@
 function calcularNumero() {
 
     var displayDeInfo = document.getElementById("info")
-    limpiarHijos(displayDeInfo)
+    matarHijos(displayDeInfo)
 
     var ingreso = document.getElementById("ingreso").value;
 
@@ -10,10 +10,11 @@ function calcularNumero() {
     while (String(numero).length > 1) {
         numero = sumarCifras(numero);
     }
+
     if (numero != 0) {
         document.getElementById("resultado").innerHTML = numero;
         mostrarArchivoDeNumero(numero, displayDeInfo);
-    }else (document.getElementById("resultado").innerHTML = "El ingeso no es válido");
+    } else (document.getElementById("resultado").innerHTML = "El ingeso no es válido");
 
 }
 
@@ -39,8 +40,9 @@ function nombreANumero(cadena) {
     return cadena;
 }
 
+/*
 function mostrarArchivoDeNumero(cual, donde) {
-    fetch("/explicaciones/" + cual + ".txt")
+    fetch("/https://github.com/franciscoidalgo/Numerologia/blob/master/explicaciones/" + cual + ".txt")
         .then(res => res.text())
         .then(contenido => {
             let lineas = contenido.split(/\n/);
@@ -51,9 +53,35 @@ function mostrarArchivoDeNumero(cual, donde) {
             });
         })
 }
+*/
 
-function limpiarHijos(deQuien) {
+function matarHijos(deQuien) {
     while (deQuien.firstChild) {
         deQuien.removeChild(deQuien.lastChild);
     }
+}
+
+function getText(numero){
+    var request = new XMLHttpRequest();
+    request.open('GET', 'https://github.com/franciscoidalgo/Numerologia/blob/master/explicaciones/' + numero +'.txt', true);
+    request.send(null);
+    request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+            var type = request.getResponseHeader('Content-Type');
+            if (type.indexOf("text") !== 1) {
+                return request.responseText;
+            }
+        }
+    }
+}
+
+function mostrarArchivoDeNumero(cual, donde) {
+    var texto = getText(cual);
+    var parrafo;
+    texto = texto.split(/\n/);
+    texto.forEach(linea=>{
+        parrafo = document.createElement("p");
+        parrafo.innerHTML = linea;
+        donde.appendChild(parrafo);
+    })
 }
