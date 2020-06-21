@@ -42,7 +42,7 @@ function nombreANumero(cadena) {
 
 
 function mostrarArchivoDeNumero(cual, donde) {
-    fetch("/https://github.com/franciscoidalgo/Numerologia/blob/master/explicaciones/" + cual + ".txt")
+    fetch("/explicaciones/" + cual + ".txt")
         .then(res => res.text())
         .then(contenido => {
             let lineas = contenido.split(/\n/);
