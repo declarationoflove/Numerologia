@@ -63,7 +63,9 @@ function matarHijos(deQuien) {
 
 function getText(numero){
     var request = new XMLHttpRequest();
-    request.open('GET', 'https://github.com/franciscoidalgo/Numerologia/blob/master/explicaciones/' + numero +'.txt', true);
+    var url = "https://github.com/franciscoidalgo/Numerologia/blob/master/explicaciones/" + numero + ".txt";
+    console.log(url);
+    request.open('GET', url, true);
     request.send(null);
     request.onreadystatechange = function () {
         if (request.readyState === 4 && request.status === 200) {
