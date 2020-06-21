@@ -60,3 +60,16 @@ function matarHijos(deQuien) {
         deQuien.removeChild(deQuien.lastChild);
     }
 }
+
+function cargarTxt(cual) {
+    var path = "/explicaciones/" + cual + ".txt";
+    var result = null;
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", path, false);
+    xmlhttp.send();
+    if (xmlhttp.status==200) {
+      result = xmlhttp.responseText;
+    }
+    alert(result);
+    return result;
+  }
