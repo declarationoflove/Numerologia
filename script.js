@@ -13,7 +13,8 @@ function calcularNumero() {
 
     if (numero != 0) {
         document.getElementById("resultado").innerHTML = numero;
-        mostrarArchivoDeNumero(numero, displayDeInfo);
+        //mostrarArchivoDeNumero(numero, displayDeInfo);
+        cargarTxt(numero);
     } else (document.getElementById("resultado").innerHTML = "El ingeso no es válido");
 
 }
@@ -62,14 +63,8 @@ function matarHijos(deQuien) {
 }
 
 function cargarTxt(cual) {
-    var path = "/explicaciones/" + cual + ".txt";
-    var result = null;
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", path, false);
-    xmlhttp.send();
-    if (xmlhttp.status==200) {
-      result = xmlhttp.responseText;
-    }
-    alert(result);
-    return result;
+    jQuery.get("/explicaciones/" + cual + ".txt", function(txt){
+        $("#info").text(txt);
+    });
+
   }
