@@ -12,12 +12,13 @@ function calcularNumero() {
     }
 
     if (numero != 0) {
+        let path = ("explicaciones/"+numero+".txt");
         document.getElementById("resultado").innerHTML = numero;
-        //mostrarArchivoDeNumero(numero, displayDeInfo);
-        cargarTxt(numero);
+        cambiaContenido(path, displayDeInfo);
     } else (document.getElementById("resultado").innerHTML = "El ingeso no es válido");
 
 }
+
 
 function sumarCifras(valor) {
     valor = String(valor);
@@ -27,6 +28,7 @@ function sumarCifras(valor) {
     }
     return suma;
 }
+
 
 function nombreANumero(cadena) {
     cadena = cadena.replace(/a|á|i|í|q|j|y/gi, "1");
@@ -62,25 +64,20 @@ function matarHijos(deQuien) {
     }
 }
 
-function cargarTxt(cual) {
-    jQuery.get("/explicaciones/" + cual + ".txt", function(txt){
-        $("#info").text(txt);
-    });
 
-  }
-function cambiaContenido() {
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("info").innerHTML = this.responseText;
-                }
-            };
-            /* .open: especifica la solicitud
-             - GET/POST.
-             - Archivo: txt, php, xml, json, etc.
-             - true/false: método de envío. */
-            xhr.open("GET", "holamundo.txt", true);
-            /* .send: envía la solicitud al servidor.
-                Si utilizamos POST debemos pasar los datos por parámetro */
-            xhr.send();
+function cambiaContenido(path, elemento) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            let lineas = this.responseText.split(/\n/);
+            let parrafo;
+            lineas.forEach(linea => {
+                parrafo = document.createElement("p");
+                parrafo.innerHTML = linea;
+                elemento.appendChild(parrafo);
+            })
         }
+    };
+    xhr.open("GET", path, true);
+    xhr.send();
+}
