@@ -12,7 +12,7 @@ function calcularNumero() {
     }
 
     if (numero != 0) {
-        let path = ("explicaciones/"+numero+".txt");
+        let path = ("explicaciones/" + numero + ".txt");
         document.getElementById("resultado").innerHTML = numero;
         cambiaContenido(path, displayDeInfo);
     } else (document.getElementById("resultado").innerHTML = "El ingeso no es válido");
