@@ -1,5 +1,3 @@
-header("Content-Type: text/plain");
-header("Access-Control-Allow-Origin: *");
 Explicacion 1
 Es muy
 muy
