@@ -1,3 +1,4 @@
+//Funciones de Numerología
 function calcularNumero() {
 
     var displayDeInfo = document.getElementById("info")
@@ -58,6 +59,7 @@ function mostrarArchivoDeNumero(cual, donde) {
 }
 
 
+//Funciones genéricas
 function matarHijos(deQuien) {
     while (deQuien.firstChild) {
         deQuien.removeChild(deQuien.lastChild);
@@ -80,4 +82,9 @@ function cambiaContenido(path, elemento) {
     };
     xhr.open("GET", path, true);
     xhr.send();
+}
+
+
+function cambiarFondo(nuevoFondo) {
+    $("body").css("background-image", "url(assets/" + nuevoFondo + ")");
 }
