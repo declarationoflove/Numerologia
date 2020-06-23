@@ -49,8 +49,7 @@
                     <input type="text" id="ingreso" class="form-control">
                 </div>
                 <br>
-                <button class="btn btn-outline-primary btn-block" type="button"
-                    onclick="calcularNumero()">Calcular</button>
+                <button id="botonIngreso" class="btn btn-outline-primary btn-block" type="button">Calcular</button>
                 <br>
             </div>
             <div class="card-footer" style="text-align: center;">
@@ -74,6 +73,17 @@
 
     <!-- MIS archivos -->
     <script src="src/main-min.js"></script>
+
+    <!-- Scripts de botones -->
+    <script>
+        $("#ingreso").keypress(function (event) {
+            if (event.keyCode === 13) {
+                calcularNumero();
+            }
+        });
+
+        $("#botonIngreso").click(function () { calcularNumero() });
+    </script>
 
 </body>
 
