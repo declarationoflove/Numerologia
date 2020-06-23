@@ -7,7 +7,6 @@ body {
     -o-background-size     : cover;
     -moz-background-size   : cover;
     -webkit-background-size: cover;
-    padding-top            : 3rem;
 }
 
 @media (max-width: 768px) and (orientation: portrait){
